@@ -1,4 +1,4 @@
- *{
+*{
     box-sizing: border-box;
  }
  
@@ -6,6 +6,7 @@
     background-color: #0c0c13;
     margin: 0px;
     color: white;
+    
 } 
 
 .btn-container{

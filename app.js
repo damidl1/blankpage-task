@@ -12,3 +12,113 @@ function changeTheme() {
     console.log(document.body.className)
 }
 
+function saveTextToLocalStorage() {
+    let textDivContent = document.getElementById('text-div').innerText;
+    localStorage.setItem('textContent', textDivContent);
+}
+
+function loadTextFromLocalStorage() {
+    let savedText = localStorage.getItem('textContent');
+    if (savedText) {
+        document.getElementById('text-div').innerText = savedText;
+    }
+}
+
+
+document.addEventListener('DOMContentLoaded', loadTextFromLocalStorage);
+
+document.getElementById('text-div').addEventListener('input', saveTextToLocalStorage);
+
+
+function downloadText() {
+    let textDivContent = document.getElementById('text-div').innerText;
+
+    let blob = new Blob([textDivContent], {type: 'text/plain'});
+    
+    let url = URL.createObjectURL(blob);
+
+    let downloadLink = document.createElement('a');
+    downloadLink.href = url;
+    downloadLink.download = 'new-document.txt';
+
+    downloadLink.click();
+
+    URL.revokeObjectURL(url);
+    document.body.removeChild(downloadLink);
+}
+
+function fullscreenWindow() {
+    if (document.fullscreenEnabled || document.webkitFullscreenEnabled || document.mozFullScreenEnabled || document.msFullscreenEnabled) {
+        let element = document.documentElement;
+        if (element.requestFullscreen) {
+            element.requestFullscreen();
+        } else if (element.webkitRequestFullscreen) {
+            element.webkitRequestFullscreen();
+        } else if (mozRequestFullscreen) {
+            element.mozRequestFullscreen();
+        } else if (element.msRequestFullscreen) {
+            element.msRequestFullscreen();
+        }
+    }
+}
+
+function exitFullscreen() {
+    if (document.exitFullscreen) {
+        document.exitFullscreen();
+    } else if (document.webkitExitFullscreen) {
+        document.webkitExitFullscreen();
+    } else if (document.mozCancelFullScreen) {
+        document.mozCancelFullScreen();
+    } else if (document.msExitFullscreen) {
+        document.msExitFullscreen();
+    }
+}
+
+
+function countChars() {
+    const textDivContent = document.getElementById('text-div').innerText;
+    
+    const trimmedText = textDivContent.trim();
+   
+    return trimmedText.length;
+}
+
+
+function updateCharCount() {
+    const charCountElement = document.getElementById('char-count');
+
+    const count = countChars();
+
+    charCountElement.textContent = `Numero di caratteri: ${count}`;
+}
+
+document.getElementById('text-div').addEventListener('input', updateCharCount)
+
+
+
+
+
+
+function countWords() {
+
+    const textDivContent = document.getElementById('text-div').innerText;
+    
+    const dataArray = textDivContent.trim().split(/\s+/);
+
+    const wordArray = dataArray.filter(word => word !== '');
+
+    return wordArray.length;
+}
+
+
+
+
+function updateWordCount() {
+    const wordCountElement = document.getElementById('word-count');
+
+    const count = countWords();
+
+    wordCountElement.textContent = `Numero di parole: ${count}`;
+}
+
+document.getElementById('text-div').addEventListener('input', updateWordCount);
