@@ -125,3 +125,18 @@
     background-color: #5e665d;
     height: 60px;
 }
+
+@media (max-width: 600px) {
+    .btn-container{
+        flex-direction: column;
+        align-items: center;
+        gap: 15px;
+    }
+    #theme-btn,
+    #download-btn,
+    #fullscreen-btn,
+    #markdown-btn,
+    #downloadpage-btn{
+        width: 100%;
+    }
+}

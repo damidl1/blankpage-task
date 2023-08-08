@@ -41,6 +41,7 @@ function downloadText() {
     downloadLink.href = url;
     downloadLink.download = 'new-document.txt';
 
+    document.body.appendChild(downloadLink);
     downloadLink.click();
 
     URL.revokeObjectURL(url);
@@ -157,6 +158,7 @@ function downloadPage() {
    downloadLink.href = url;
    downloadLink.download = 'page.html';
 
+   document.body.appendChild(downloadLink);
    downloadLink.click();
 
    URL.revokeObjectURL(url);
