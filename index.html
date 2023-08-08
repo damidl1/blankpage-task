@@ -5,18 +5,22 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Blank Page Clone</title>
     <link rel="stylesheet" href="./style.css">
+    <link rel="icon" type="image/png" sizes="32x32" href="./assets/favicon-32x32.png">
 </head>
 <body class="dark">
     <div class="btn-container">
         <button id="theme-btn" onclick="changeTheme()">Cambia Tema</button>
         <button id="download-btn" onclick="downloadText()">Scarica il testo</button>
         <button id="fullscreen-btn" onclick="fullscreenWindow()">Schermo intero</button>
+        <button id="markdown-btn" onclick="toggleConversion()">Markdown</button>
+        <button id="downloadpage-btn" onclick="downloadPage()">Scarica la pagina</button>
     </div>
     <p id="word-count">Numero di parole: 0</p>
     <p id="char-count">Numero di caratteri: 0</p>
     <div id="text-div" class="text-div" contenteditable></div>
     
 </body>
+<script src="./node_modules/showdown/dist/showdown.min.js"></script>
 <script src="./app.js"></script>
 </html>
 

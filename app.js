@@ -122,3 +122,43 @@ function updateWordCount() {
 }
 
 document.getElementById('text-div').addEventListener('input', updateWordCount);
+
+
+
+const converter = new showdown.Converter();
+
+let isHtml = true;
+
+function toggleConversion() {
+    const textDiv = document.getElementById('text-div');
+    const textContent = textDiv.textContent;
+    
+
+    if (isHtml) {
+        const markdownText = converter.makeMarkdown(textContent);
+        textDiv.innerHTML = markdownText;
+    } else {
+        const htmlText = converter.makeHtml(textContent);
+        textDiv.innerHTML = htmlText;
+    }
+    isHtml = !isHtml;
+}
+
+console.log(toggleConversion())
+
+
+function downloadPage() {
+   const pageContent = document.documentElement.outerHTML;
+   
+   const blob = new Blob([pageContent], { type: 'text/html'});
+   const url = URL.createObjectURL(blob);
+
+   const downloadLink = document.createElement('a');
+   downloadLink.href = url;
+   downloadLink.download = 'page.html';
+
+   downloadLink.click();
+
+   URL.revokeObjectURL(url);
+   document.body.removeChild(downloadLink);
+}
