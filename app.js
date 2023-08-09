@@ -125,27 +125,29 @@ function updateWordCount() {
 document.getElementById('text-div').addEventListener('input', updateWordCount);
 
 
-
+let isHtml = false;
 const converter = new showdown.Converter();
 
-let isHtml = true;
 
 function toggleConversion() {
     const textDiv = document.getElementById('text-div');
-    const textContent = textDiv.textContent;
+    const textContent = textDiv.textContent.trim();
     
+    let markdownText = '';
 
     if (isHtml) {
-        const markdownText = converter.makeMarkdown(textContent);
-        textDiv.innerHTML = markdownText;
-    } else {
         const htmlText = converter.makeHtml(textContent);
         textDiv.innerHTML = htmlText;
+        console.log(markdownText);
+    } else {
+        const markdownText = converter.makeMarkdown(textContent);
+        textDiv.innerHTML = markdownText;
     }
     isHtml = !isHtml;
+   
 }
 
-console.log(toggleConversion())
+
 
 
 function downloadPage() {
@@ -164,3 +166,4 @@ function downloadPage() {
    URL.revokeObjectURL(url);
    document.body.removeChild(downloadLink);
 }
+
